@@ -44,7 +44,7 @@ public class BonanzaParser implements Parser {
                 try {
                     startTime = modifyStartTime(startTime);
                 } catch (ParseException e) {
-                    System.err.printf("Error during parsing time %s", startTime);
+                    System.err.printf("Error during parsing time %s\n Current year %d\n", startTime, Calendar.getInstance().get(Calendar.YEAR));
                     return;
                 }
 
@@ -64,7 +64,7 @@ public class BonanzaParser implements Parser {
             });
         }
         catch (IOException e) {
-            System.err.printf("Error while fetching site %s.", url);
+            System.err.printf("Error while fetching site %s.\n", url);
         }
 
         return events;
