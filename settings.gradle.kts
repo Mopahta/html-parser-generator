@@ -13,4 +13,4 @@ plugins {
 }
 
 rootProject.name = "betbonanza-parser"
-include("app", "list", "utilities")
+include("app")

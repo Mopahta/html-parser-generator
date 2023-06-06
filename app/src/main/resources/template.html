@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available events</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<body style="padding: 50px">
+<script>
+    function filter() {
+        let aftertime = document.querySelector("#aftertime").value;
+        let beforetime = document.querySelector("#beforetime").value;
+
+        console.log("after", aftertime);
+        console.log("before", beforetime);
+
+        if (aftertime > beforetime) {
+            console.log("Incorrect dates.");
+            beforetime = "";
+            aftertime = "";
+        }
+
+        aftertime = aftertime.replace("T", " ");
+        beforetime = beforetime.replace("T", " ");
+
+        let events = document.querySelectorAll("table.ui > tbody > tr");
+
+        console.log("after", aftertime);
+        console.log("before", beforetime);
+
+        events.forEach(event => {
+            let time = event.querySelector("td > a");
+
+            console.log(time.innerHTML);
+            if (time.innerHTML <= beforetime && time.innerHTML >= aftertime) {
+                console.log("visible")
+                event.style.visibility = "visible";
+            }
+            else {
+                console.log("not visible")
+                event.style.visibility = "collapse";
+            }
+        })
+
+        return false;
+    }
+</script>
+<table class="ui celled striped table">
+    <thead>
+    <tr>
+        <th>Sports Kind</th>
+        <th>Tournament</th>
+        <th>First Team</th>
+        <th>Second Team</th>
+        <th>
+        <form onsubmit="return filter()">
+            <label for="aftertime">After:</label>
+            <input type="datetime-local" id="aftertime" name="aftertime">
+            <label for="beforetime">Before:</label>
+            <input type="datetime-local" id="beforetime" name="beforetime">
+            <input class="ui button" type="submit" name="Filter">
+        </form>
+        </th>
+    </tr></thead>
+    <tbody>
+    </tbody>
+</table>
+</body>
+</html>
