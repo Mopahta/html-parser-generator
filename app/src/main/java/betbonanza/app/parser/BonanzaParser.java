@@ -44,6 +44,7 @@ public class BonanzaParser implements Parser {
                 try {
                     startTime = modifyStartTime(startTime);
                 } catch (ParseException e) {
+                    e.printStackTrace();
                     System.err.printf("Error during parsing time %s\n Current year %d\n", startTime, Calendar.getInstance().get(Calendar.YEAR));
                     return;
                 }
