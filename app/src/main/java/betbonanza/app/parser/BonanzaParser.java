@@ -9,17 +9,14 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class BonanzaParser implements Parser {
     private String modifyStartTime(String startTime) throws ParseException {
 
         startTime = startTime.substring(startTime.indexOf(" ") + 1);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy dd MMM HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy dd MMM HH:mm", Locale.ENGLISH);
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
         Date parsedDate = dateFormat.parse(year + " " + startTime);
