@@ -13,11 +13,16 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
         Parser bonanzaParser = new BonanzaParser();
-        List<EventDTO> events = bonanzaParser.parse("https://lite.betbonanza.com/");
+
+        List<EventDTO> events = bonanzaParser.parse("https://lite.betbonanza.com/sports");
+
         FormatGenerator htmlGenerator = new HtmlGenerator();
+
+        System.out.println("Generating html...");
         String html = htmlGenerator.generate(events);
 
         Saver fileSaver = new FileSaver();
+        System.out.println("Saving to output.html...");
         fileSaver.save(html);
     }
 }
